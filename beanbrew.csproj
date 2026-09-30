@@ -8,4 +8,12 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="taskbar background colour.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="taskbar background colour.png" />
+  </ItemGroup>
+
 </Project>

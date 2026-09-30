@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="1200" Width="600">
     <Grid>
-        <Label Content="sample text" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comic Sans MS"/>
+        <Image HorizontalAlignment="Left" Height="100" Margin="660,741,0,0" VerticalAlignment="Top" Width="100"/>
+        <Rectangle Stroke="Black" Margin="0,1029,0,0" Fill="#FF3B1F1C" Height="155"/>
 
     </Grid>
 </Window>
