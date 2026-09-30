@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:beanbrew"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="1200" Width="600">
     <Grid>
         <Label Content="sample text" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comic Sans MS"/>
 
