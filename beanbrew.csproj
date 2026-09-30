@@ -9,10 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="coffee logo.png" />
     <None Remove="taskbar background colour.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="coffee logo.png" />
     <Resource Include="taskbar background colour.png" />
   </ItemGroup>
 
