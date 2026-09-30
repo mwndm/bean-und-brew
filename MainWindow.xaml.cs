@@ -17,7 +17,7 @@ namespace beanbrew
         {
             this.InitializeComponent();
             this.ResizeMode = ResizeMode.NoResize;
-
+            /*
             var grid = new Grid();
             grid.HorizontalAlignment = HorizontalAlignment.Center;
             grid.VerticalAlignment = VerticalAlignment.Center;
@@ -26,8 +26,10 @@ namespace beanbrew
             lbl.Content = "comic sans ms";
             lbl.FontFamily = new FontFamily("Comic Sans MS");
             grid.Children.Add(lbl);
+            */
 
-            this.MainFrame.Content = grid;
+            //this.MainFrame.Content = grid;
+            this.MainFrame.Content = new homepage();
         }
     }
 }
