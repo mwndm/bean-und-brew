@@ -8,8 +8,8 @@
         Title="MainWindow" Height="1200" Width="600">
     <Grid>
         <Image HorizontalAlignment="Left" Height="100" Margin="660,741,0,0" VerticalAlignment="Top" Width="100"/>
-        <Rectangle Stroke="Black" Margin="0,1029,0,0" Fill="#FF3B1F1C" Height="155"/>
-        <Rectangle Stroke="Black" Margin="0,0,0,1059" Fill="#FF3B1F1C" Height="125"/>
+        <Rectangle Stroke="Black" Margin="0,1054,0,0" Fill="#FF3B1F1C" Height="130"/>
+        <Rectangle Stroke="Black" Margin="0,0,0,1059" Fill="#FF3B1F1C" Height="130"/>
 
     </Grid>
 </Window>
