@@ -29,7 +29,7 @@ namespace beanbrew
             */
 
             //this.MainFrame.Content = grid;
-            this.MainFrame.Content = new homepage();
+            this.MainFrame.Content = new Pages.HomePage();
         }
     }
 }

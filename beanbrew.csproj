@@ -9,15 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="coffee logo no text.png" />
-    <None Remove="coffee logo.png" />
-    <None Remove="taskbar background colour.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="coffee logo no text.png" />
-    <EmbeddedResource Include="coffee logo.png" />
-    <EmbeddedResource Include="taskbar background colour.png" />
+    <Resource Include="Images\Branding\LogoMin.png" />
+    <Resource Include="Images\Branding\Logo.png" />
+    <Resource Include="Images\Placeholder\TaskbarBackgroundColor.png" />
   </ItemGroup>
 
 </Project>

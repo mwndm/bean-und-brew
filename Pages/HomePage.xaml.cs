@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace beanbrew
+namespace beanbrew.Pages
 {
     /// <summary>
-    /// Interaction logic for homepage.xaml
+    /// Interaction logic for HomePage.xaml
     /// </summary>
-    public partial class homepage : Page
+    public partial class HomePage : Page
     {
-        public homepage()
+        public HomePage()
         {
             InitializeComponent();
         }
