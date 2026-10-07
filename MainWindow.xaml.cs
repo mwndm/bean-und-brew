@@ -30,6 +30,27 @@ namespace beanbrew
 
             //this.MainFrame.Content = grid;
             this.MainFrame.Content = new Pages.HomePage();
+
+            var btnCount = 4;
+            for (int i = 0; i < btnCount; i++) {
+                //var inst = new Button();
+                //inst.Content = $"Button {i + 1}";
+                //inst.HorizontalAlignment = HorizontalAlignment.Left;
+                //inst.VerticalAlignment = VerticalAlignment.Bottom;
+                //inst.Margin = new Thickness(150.0 * i, 0, 0, 0);
+                //inst.Width = 150;
+                //inst.Height = 150;
+                //this.AddChild(inst);
+                /*
+                 * 
+        <Button Content="Button" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Bottom" Height="130" Width="150"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="150,0,0,0" VerticalAlignment="Bottom" Height="130" Width="150"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="300,0,0,0" VerticalAlignment="Bottom" Height="130" Width="150"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="450,0,0,0" VerticalAlignment="Bottom" Height="130" Width="150"/>
+                 */
+            }
         }
+
+        
     }
 }

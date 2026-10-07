@@ -9,7 +9,7 @@
       Title="HomePage">
 
     <Grid>
-        <Rectangle Margin="0,0,0,0" Fill="#FFFFFF"/>
+        <Rectangle Margin="0,0,0,0" Fill="#FFFFFFFF"/>
         <Label Content="sample text" HorizontalAlignment="Left" Margin="38,28,0,0" VerticalAlignment="Top" FontSize="2200"/>
     </Grid>
 </Page>

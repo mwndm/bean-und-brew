@@ -6,11 +6,86 @@
         xmlns:local="clr-namespace:beanbrew"
         mc:Ignorable="d"
         Title="MainWindow" Height="1200" Width="600">
+    <Window.Resources>
+        <Style x:Key="NavButton" TargetType="Button">
+            <Setter Property="Background" Value="#005B2C22"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+
+                        <Border x:Name="ButtonBorder" Background="{TemplateBinding Background}" BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+
+                        <ControlTemplate.Resources>
+                            <Storyboard x:Key="MouseOverStoryboard">
+                                <ColorAnimation Storyboard.TargetName="ButtonBorder" Storyboard.TargetProperty="Background.Color" To="#FF5B2C22" Duration="0:0:0.2"/>
+                            </Storyboard>
+
+                            <Storyboard x:Key="MouseLeaveStoryboard">
+                                <ColorAnimation Storyboard.TargetName="ButtonBorder" Storyboard.TargetProperty="Background.Color" To="#005B2C22" Duration="0:0:0.2"/>
+                            </Storyboard>
+                        </ControlTemplate.Resources>
+
+                        <ControlTemplate.Triggers>
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <BeginStoryboard Storyboard="{StaticResource MouseOverStoryboard}"/>
+                            </EventTrigger>
+
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <BeginStoryboard Storyboard="{StaticResource MouseLeaveStoryboard}"/>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
     <Grid>
         <Rectangle Margin="0,0,0,0" Fill="#FF3B1F1C"/>
-        <ScrollViewer Margin="0,130,0,130" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-            <Frame Name="MainFrame"></Frame>
-        </ScrollViewer>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="130" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="130" />
+            </Grid.RowDefinitions>
+
+            <ScrollViewer Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                <Frame Name="MainFrame"></Frame>
+            </ScrollViewer>
+
+            <Grid Grid.Column="0" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Style="{StaticResource NavButton}" FontSize="24" Content="Home" />
+                <Button Grid.Column="1" Style="{StaticResource NavButton}" FontSize="24" Content="Book" />
+                <Button Grid.Column="2" Style="{StaticResource NavButton}" FontSize="24" Content="Order" />
+                <Button Grid.Column="3" Style="{StaticResource NavButton}" FontSize="24" Content="Rewards" />
+
+                <!--
+                <Rectangle Grid.Column="0" Margin="0,0,0,0" Fill="#FFFFFFFF"/>
+                <Rectangle Grid.Column="1" Margin="0,0,0,0" Fill="#FF808080"/>
+                <Rectangle Grid.Column="2" Margin="0,0,0,0" Fill="#FF404040"/>
+                <Rectangle Grid.Column="3" Margin="0,0,0,0" Fill="#FF202020"/>
+                -->
+            </Grid>
+        </Grid>
+
         <Image HorizontalAlignment="Center" VerticalAlignment="Top" Width="168" Height="168" Margin="0,1,0,0" Source="pack://application:,,,/Images/Branding/LogoMin.png"/>
     </Grid>
 </Window>
