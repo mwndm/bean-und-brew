@@ -9,9 +9,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Pages\5ecec6ef73e4440004f09e75.png" />
+    <None Remove="Pages\backdrop homepage.png" />
+    <None Remove="Pages\john making coffee.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Images\Branding\LogoMin.png" />
     <Resource Include="Images\Branding\Logo.png" />
     <Resource Include="Images\Placeholder\TaskbarBackgroundColor.png" />
+    <Resource Include="Pages\5ecec6ef73e4440004f09e75.png" />
+    <Resource Include="Pages\backdrop homepage.png" />
+    <Resource Include="Pages\john making coffee.jpg" />
   </ItemGroup>
 
 </Project>
