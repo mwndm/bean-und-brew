@@ -72,17 +72,14 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0" Style="{StaticResource NavButton}" FontSize="24" Content="Home" />
-                <Button Grid.Column="1" Style="{StaticResource NavButton}" FontSize="24" Content="Book" />
-                <Button Grid.Column="2" Style="{StaticResource NavButton}" FontSize="24" Content="Order" />
-                <Button Grid.Column="3" Style="{StaticResource NavButton}" FontSize="24" Content="Rewards" />
-
-                <!--
-                <Rectangle Grid.Column="0" Margin="0,0,0,0" Fill="#FFFFFFFF"/>
-                <Rectangle Grid.Column="1" Margin="0,0,0,0" Fill="#FF808080"/>
-                <Rectangle Grid.Column="2" Margin="0,0,0,0" Fill="#FF404040"/>
-                <Rectangle Grid.Column="3" Margin="0,0,0,0" Fill="#FF202020"/>
-                -->
+                <Rectangle Name="xRecHomeBg" Grid.Column="0" Margin="0,0,0,0" Fill="#005B2C22"/>
+                <Button Name="xBtnHome" Grid.Column="0" Style="{StaticResource NavButton}" FontSize="24" Content="Home" Click="xBtnHome_Click" />
+                <Rectangle Name="xRecBookBg" Grid.Column="1" Margin="0,0,0,0" Fill="#005B2C22"/>
+                <Button Name="xBtnBook" Grid.Column="1" Style="{StaticResource NavButton}" FontSize="24" Content="Book" Click="xBtnBook_Click" />
+                <Rectangle Name="xRecOrderBg" Grid.Column="2" Margin="0,0,0,0" Fill="#005B2C22"/>
+                <Button Name="xBtnOrder" Grid.Column="2" Style="{StaticResource NavButton}" FontSize="24" Content="Order" Click="xBtnOrder_Click" />
+                <Rectangle Name="xRecRewardsBg" Grid.Column="3" Margin="0,0,0,0" Fill="#005B2C22"/>
+                <Button Name="xBtnRewards" Grid.Column="3" Style="{StaticResource NavButton}" FontSize="24" Content="Rewards" Click="xBtnRewards_Click" />
             </Grid>
         </Grid>
 
