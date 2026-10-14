@@ -61,7 +61,10 @@
             </Grid.RowDefinitions>
 
             <ScrollViewer Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                <Frame Name="MainFrame"></Frame>
+                <Grid x:Name="MainFrame" ClipToBounds="True" Background="Transparent">
+                    <Frame x:Name="OldPageFrame" NavigationUIVisibility="Hidden" Background="Transparent" BorderThickness="0" IsHitTestVisible="False" />
+                    <Frame x:Name="CurrentPageFrame" NavigationUIVisibility="Hidden" Background="Transparent" BorderThickness="0" />
+                </Grid>
             </ScrollViewer>
 
             <Grid Grid.Column="0" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">

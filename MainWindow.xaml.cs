@@ -21,11 +21,11 @@ namespace beanbrew {
 
         private int CurNavButton = -1;
         private List<NavbarButtonData> NavButtons = [];
+        private bool IsTransitioning = false;
 
         public MainWindow() {
             this.InitializeComponent();
             this.ResizeMode = ResizeMode.NoResize;
-            this.MainFrame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
             this.NavButtons = [
                 new NavbarButtonData {
                     ButtonInst = this.xBtnHome, ButtonBacking = this.xRecHomeBg, ButtonName = "Home", Target = new Pages.HomePage()
@@ -51,27 +51,93 @@ namespace beanbrew {
             return this.GetColorWithAltAlpha(((SolidColorBrush)backing.Fill).Color, alpha);
         }
 
+        private void AnimateBackingAlpha(Rectangle backing, byte targetAlpha) {
+            if (backing.Fill is not SolidColorBrush currentBrush) {
+                currentBrush = new SolidColorBrush(Colors.Transparent);
+                backing.Fill = currentBrush;
+            }
+
+            var animation = new ColorAnimation {
+                To = this.GetBackingColorWithAltAlpha(backing, targetAlpha),
+                Duration = TimeSpan.FromMilliseconds(200),
+                EasingFunction = new CubicEase {
+                    EasingMode = EasingMode.EaseInOut
+                }
+            };
+
+            currentBrush.BeginAnimation(SolidColorBrush.ColorProperty, animation);
+        }
+
         private void GoToNavIdx(int idx) {
-            if (this.CurNavButton == idx) {
+            if (idx < 0 || idx >= this.NavButtons.Count) {
                 return;
             }
 
-            var duration = new Duration(TimeSpan.FromMilliseconds(200));
-            if (this.CurNavButton >= 0) {
-                Rectangle oldBacking = this.NavButtons[this.CurNavButton].ButtonBacking;
-                oldBacking.Fill.BeginAnimation(SolidColorBrush.ColorProperty, new ColorAnimation {
-                    To = this.GetBackingColorWithAltAlpha(oldBacking, 0),
-                    Duration = duration
-                });
+            if (idx == this.CurNavButton || this.IsTransitioning) {
+                return;
             }
 
-            this.MainFrame.Content = this.NavButtons[idx].Target;
-            Rectangle newBacking = this.NavButtons[idx].ButtonBacking;
-            newBacking.Fill.BeginAnimation(SolidColorBrush.ColorProperty, new ColorAnimation {
-                To = this.GetBackingColorWithAltAlpha(newBacking, 255),
-                Duration = duration
-            });
-            this.CurNavButton = idx;
+            if (this.CurNavButton >= 0) {
+                this.AnimateBackingAlpha(this.NavButtons[this.CurNavButton].ButtonBacking, 0);
+            }
+
+            this.AnimateBackingAlpha(this.NavButtons[idx].ButtonBacking, 255);
+            Page newPage = this.NavButtons[idx].Target;
+            if (this.CurNavButton == -1) {
+                this.CurrentPageFrame.Content = newPage;
+                this.CurNavButton = idx;
+                return;
+            }
+
+            this.IsTransitioning = true;
+            int direction = idx > this.CurNavButton ? 1 : -1;
+
+            double width = this.MainFrame.ActualWidth;
+            if (width <= 0) {
+                width = this.MainFrame.RenderSize.Width;
+            }
+
+            Page oldPage = this.NavButtons[this.CurNavButton].Target;
+            this.OldPageFrame.Content = oldPage;
+            this.CurrentPageFrame.Content = newPage;
+            this.OldPageFrame.RenderTransform = new TranslateTransform(0, 0);
+            this.CurrentPageFrame.RenderTransform = new TranslateTransform(direction * width, 0);
+
+            var duration = TimeSpan.FromMilliseconds(280);
+            var oldTransform = this.OldPageFrame.RenderTransform;
+            var newTransform = this.CurrentPageFrame.RenderTransform;
+
+            var easing = new CubicEase {
+                EasingMode = EasingMode.EaseInOut
+            };
+
+            var oldAnimation = new DoubleAnimation {
+                To = -direction * width,
+                Duration = duration,
+                EasingFunction = easing
+            };
+
+            var newAnimation = new DoubleAnimation {
+                To = 0,
+                Duration = duration,
+                EasingFunction = easing
+            };
+
+            newAnimation.Completed += (s, e) => {
+                oldTransform.BeginAnimation(TranslateTransform.XProperty, null);
+                newTransform.BeginAnimation(TranslateTransform.XProperty, null);
+
+                this.OldPageFrame.Content = null;
+
+                this.OldPageFrame.RenderTransform = Transform.Identity;
+                this.CurrentPageFrame.RenderTransform = Transform.Identity;
+
+                this.CurNavButton = idx;
+                this.IsTransitioning = false;
+            };
+
+            oldTransform.BeginAnimation(TranslateTransform.XProperty, oldAnimation);
+            newTransform.BeginAnimation(TranslateTransform.XProperty, newAnimation);
         }
 
         private void xBtnHome_Click(object sender, RoutedEventArgs e) {
