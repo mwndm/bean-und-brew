@@ -41,7 +41,7 @@ namespace beanbrew {
                     ButtonInst = this.xBtnOrder, ButtonBacking = this.xRecOrderBg, ButtonName = "Order", Target = new Pages.OrderPage()
                 },
                 new NavbarButtonData {
-                    ButtonInst = this.xBtnRewards, ButtonBacking = this.xRecRewardsBg, ButtonName = "Rewards", Target = new Pages.RewardsPage()
+                    ButtonInst = this.xBtnRewards, ButtonBacking = this.xRecRewardsBg, ButtonName = "Rewards", Target = new Pages.LoginPage()
                 }
             ];
             this.GoToNavIdx(0);

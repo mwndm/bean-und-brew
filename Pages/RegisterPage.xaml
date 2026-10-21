@@ -1,0 +1,181 @@
+﻿<Page x:Class="beanbrew.Pages.RegisterPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:beanbrew.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="900" d:DesignWidth="584"
+      Title="RegisterPage">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Background="#FFF3D2B3"
+             d:DesignHeight="900" d:DesignWidth="584">
+            <Border Width="380"
+                    Padding="32"
+                    Margin="20"
+                    Background="#FFFCF7"
+                    CornerRadius="18"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+
+                <StackPanel>
+                    <TextBlock Text="Bean and Brew"
+                               FontSize="28"
+                               FontWeight="Bold"
+                               Foreground="#6F4E37"
+                               HorizontalAlignment="Center"/>
+
+                    <TextBlock Text="Create your account"
+                               FontSize="14"
+                               Foreground="#806B5D"
+                               Margin="0,6,0,24"
+                               HorizontalAlignment="Center"/>
+
+                    <!-- Email -->
+                    <TextBlock Text="Email address"
+                               Margin="0,0,0,6"/>
+
+                    <TextBox x:Name="EmailTextBox"
+                             Height="40"
+                             Padding="10"
+                             FontSize="14"
+                             Background="#FFFCF7"
+                             Foreground="#4A3326"
+                             BorderBrush="#D8C7B5"
+                             CaretBrush="#6F4E37"
+                             Margin="0,0,0,16"/>
+
+                    <!-- Phone number -->
+                    <TextBlock Text="Phone number"
+                               Margin="0,0,0,6"/>
+
+                    <TextBox x:Name="PhoneTextBox"
+                             Height="40"
+                             Padding="10"
+                             FontSize="14"
+                             Background="#FFFCF7"
+                             Foreground="#4A3326"
+                             BorderBrush="#D8C7B5"
+                             CaretBrush="#6F4E37"
+                             Margin="0,0,0,16"/>
+
+                    <!-- Password -->
+                    <TextBlock Text="Password"
+                               Margin="0,0,0,6"/>
+
+                    <PasswordBox x:Name="PasswordInput"
+                                 Height="40"
+                                 Padding="10"
+                                 FontSize="14"
+                                 Background="#FFFCF7"
+                                 Foreground="#4A3326"
+                                 BorderBrush="#D8C7B5"
+                                 Margin="0,0,0,16"/>
+
+                    <!-- Confirm password -->
+                    <TextBlock Text="Confirm password"
+                               Margin="0,0,0,6"/>
+
+                    <PasswordBox x:Name="ConfirmPasswordInput"
+                                 Height="40"
+                                 Padding="10"
+                                 FontSize="14"
+                                 Background="#FFFCF7"
+                                 Foreground="#4A3326"
+                                 BorderBrush="#D8C7B5"
+                                 Margin="0,0,0,12"/>
+
+                    <!-- Validation message -->
+                    <TextBlock x:Name="ErrorMessage"
+                               Foreground="#C0392B"
+                               TextWrapping="Wrap"
+                               Margin="0,0,0,12"
+                               Visibility="Collapsed"/>
+
+                    <!-- Create account -->
+                    <Button Content="Create Account"
+                            Height="44"
+                            Background="#6F4E37"
+                            Foreground="White"
+                            FontWeight="Bold"
+                            BorderThickness="0"
+                            Cursor="Hand"
+                            Click="CreateAccountButton_Click">
+
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="ButtonBorder"
+                                        Background="{TemplateBinding Background}"
+                                        CornerRadius="8">
+                                    <ContentPresenter
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"/>
+                                </Border>
+
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver"
+                                             Value="True">
+                                        <Setter TargetName="ButtonBorder"
+                                                Property="Background"
+                                                Value="#4A3326"/>
+                                    </Trigger>
+
+                                    <Trigger Property="IsPressed"
+                                             Value="True">
+                                        <Setter TargetName="ButtonBorder"
+                                                Property="Background"
+                                                Value="#B8895B"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <!-- Return to login -->
+                    <Button Content="Already have an account? Sign in"
+        Margin="0,12,0,0"
+        Height="38"
+        Background="Transparent"
+        Foreground="#6F4E37"
+        BorderThickness="0"
+        Cursor="Hand"
+        Click="BackToLoginButton_Click">
+
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="ButtonBorder"
+                    Background="{TemplateBinding Background}"
+                    CornerRadius="6"
+                    Padding="8,4">
+                                    <ContentPresenter
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"/>
+                                </Border>
+
+                                <ControlTemplate.Triggers>
+                                    <!-- Light brown on hover -->
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="ButtonBorder"
+                            Property="Background"
+                            Value="#E8D5BF"/>
+                                        <Setter Property="Foreground"
+                            Value="#4A3326"/>
+                                    </Trigger>
+
+                                    <!-- Slightly darker brown when clicked -->
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter TargetName="ButtonBorder"
+                            Property="Background"
+                            Value="#D8C0A5"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                </StackPanel>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</Page>

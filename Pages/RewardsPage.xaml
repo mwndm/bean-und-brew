@@ -9,7 +9,7 @@
       Title="RewardsPage">
 
     <Grid>
-        <Rectangle Margin="0,0,0,0" Fill="#FFFFFFFF"/>
-        <Label Content="gamba page" HorizontalAlignment="Left" Margin="38,28,0,0" VerticalAlignment="Top" FontSize="24"/>
+        <Rectangle Margin="0,0,0,0" Fill="#FFF3D2B3"/>
+     
     </Grid>
 </Page>
