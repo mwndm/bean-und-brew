@@ -60,12 +60,22 @@
                 <RowDefinition Height="130" />
             </Grid.RowDefinitions>
 
-            <ScrollViewer Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+            <ScrollViewer x:Name="MainScrollViewer" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" ScrollChanged="MainScrollViewer_ScrollChanged">
                 <Grid x:Name="MainFrame" ClipToBounds="True" Background="Transparent">
                     <Frame x:Name="OldPageFrame" NavigationUIVisibility="Hidden" Background="Transparent" BorderThickness="0" IsHitTestVisible="False" />
                     <Frame x:Name="CurrentPageFrame" NavigationUIVisibility="Hidden" Background="Transparent" BorderThickness="0" />
                 </Grid>
             </ScrollViewer>
+
+            <Button x:Name="ScrollDownArrow" Grid.Row="1" Width="52" Height="52" Margin="0,0,0,12" HorizontalAlignment="Center" VerticalAlignment="Bottom" Background="#FF3B1F1C" BorderBrush="White" BorderThickness="2" Foreground="White" FontSize="30" FontWeight="Bold" Content="↓" Click="ScrollDownArrow_Click" Opacity="0" Visibility="Collapsed">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="26">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-4,0,0"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
 
             <Grid Grid.Column="0" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid.ColumnDefinitions>

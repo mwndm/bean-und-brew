@@ -1,4 +1,7 @@
-﻿using System.Text;
+﻿using System.Diagnostics;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -22,6 +25,7 @@ namespace beanbrew {
         private int CurNavButton = -1;
         private List<NavbarButtonData> NavButtons = [];
         private bool IsTransitioning = false;
+        private CancellationTokenSource? ScrollAnimationCancellation;
 
         public MainWindow() {
             this.InitializeComponent();
@@ -66,6 +70,62 @@ namespace beanbrew {
             };
 
             currentBrush.BeginAnimation(SolidColorBrush.ColorProperty, animation);
+        }
+
+        private void MainScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e) {
+            if (e.ExtentHeightChange == 0 && e.ViewportHeightChange == 0 && e.VerticalChange == 0) {
+                return;
+            }
+
+            if (this.MainScrollViewer.ScrollableHeight <= 1) {
+                this.ScrollDownArrow.Opacity = 0;
+                this.ScrollDownArrow.Visibility = Visibility.Collapsed;
+                return;
+            }
+
+            this.ScrollDownArrow.Visibility = Visibility.Visible;
+            double progress = this.MainScrollViewer.VerticalOffset / (this.MainScrollViewer.ViewportHeight * 0.5);
+            this.ScrollDownArrow.Opacity = Math.Clamp(1.0 - progress, 0.0, 1.0);
+
+            if (progress >= 1.0) {
+                this.ScrollDownArrow.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private async void ScrollDownArrow_Click(object sender, RoutedEventArgs e) {
+            this.ScrollAnimationCancellation?.Cancel();
+
+            using var cancellation = new CancellationTokenSource();
+            this.ScrollAnimationCancellation = cancellation;
+
+            double startOffset = this.MainScrollViewer.VerticalOffset;
+            double targetOffset = Math.Min(startOffset + this.MainScrollViewer.ViewportHeight, this.MainScrollViewer.ScrollableHeight);
+            if (Math.Abs(targetOffset - startOffset) < 0.1) {
+                return;
+            }
+
+            const double durationMilliseconds = 450;
+            var stopwatch = Stopwatch.StartNew();
+            try {
+                while (stopwatch.Elapsed.TotalMilliseconds < durationMilliseconds) {
+                    double progress = stopwatch.Elapsed.TotalMilliseconds / durationMilliseconds;
+                    progress = Math.Clamp(progress, 0.0, 1.0);
+                    double easedProgress = 1.0 - Math.Pow(1.0 - progress, 3.0);
+                    double currentOffset = startOffset + ((targetOffset - startOffset) * easedProgress);
+                    this.MainScrollViewer.ScrollToVerticalOffset(currentOffset);
+                    await Task.Delay(16, cancellation.Token);
+                }
+
+                this.MainScrollViewer.ScrollToVerticalOffset(targetOffset);
+            }
+            catch (TaskCanceledException) {
+                // A new click started another scroll animation.
+            }
+            finally {
+                if (ReferenceEquals(this.ScrollAnimationCancellation, cancellation)) {
+                    this.ScrollAnimationCancellation = null;
+                }
+            }
         }
 
         private void GoToNavIdx(int idx) {

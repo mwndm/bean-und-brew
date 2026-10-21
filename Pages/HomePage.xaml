@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:beanbrew.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="1876" d:DesignWidth="567"
+      d:DesignHeight="1796.994" d:DesignWidth="567"
       Title="HomePage">
 
     <Grid>
@@ -36,8 +36,19 @@
         <Label HorizontalAlignment="Left" Height="76" Margin="52,1408,0,0" VerticalAlignment="Top" Width="442" FontSize="24">
             <TextBlock TextWrapping="Wrap" Width="395" ><Run Text="21 Brewing"/><Run Text=" "/><Run Text="Road"/><Run Text=", "/><Run Text="Holmfirth"/><LineBreak/><Run Text="HD9 3CF"/></TextBlock>
         </Label>
-        <Image HorizontalAlignment="Right" Height="100" Margin="0,1570,223,0" VerticalAlignment="Top" Width="160" Source="/Pages/5ecec6ef73e4440004f09e75.png"/>
         <Image HorizontalAlignment="Left" Height="212" Margin="0,1514,0,0" VerticalAlignment="Top" Width="232" Source="/Pages/awards photo EDITED.png"/>
+        <!--Image HorizontalAlignment="Right" Height="100" Margin="0,1570,223,0" VerticalAlignment="Top" Width="160" Source="/Pages/5ecec6ef73e4440004f09e75.png"/-->
+        <Button HorizontalAlignment="Right" Height="130" Width="130" Margin="10,1555,223,0" VerticalAlignment="Top" Padding="0" Background="Transparent" BorderThickness="0" Cursor="Hand" Focusable="False" FocusVisualStyle="{x:Null}" Click="InstagramButton_Click">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+
+            <Image Width="118" Height="118" Source="/Pages/5ecec6ef73e4440004f09e75.png" Stretch="Uniform"/>
+        </Button>
         <Label Content="Follow us on&#xD;&#xA;Instagram" HorizontalAlignment="Left" Height="80" Margin="344,1580,0,0" VerticalAlignment="Top" Width="148" FontSize="24" FontFamily="Segoe UI Semibold"/>
     </Grid>
 </Page>

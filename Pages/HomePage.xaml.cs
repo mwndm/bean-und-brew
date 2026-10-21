@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,9 +26,11 @@ namespace beanbrew.Pages
             InitializeComponent();
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
+        private void InstagramButton_Click(object sender, RoutedEventArgs e) {
+            Process.Start(new ProcessStartInfo {
+                FileName = "https://www.youtube.com/watch?v=vTfD20dbxho",
+                UseShellExecute = true
+            });
         }
     }
 }
